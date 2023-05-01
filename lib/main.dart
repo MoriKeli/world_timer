@@ -13,7 +13,6 @@ class TimeApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
       routes: {
         '/': (context) => StartScreen(),
         '/home': (context) => Homepage(),
