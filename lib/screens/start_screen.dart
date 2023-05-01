@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:world_time/services/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
@@ -9,18 +10,37 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen> {
-  void getTime() async {
 
+  void setupWorldTime() async {
+    WorldTime instance = WorldTime(location: 'Nairobi', countryFlag: 'kenya.png', timezone: 'Africa/Nairobi');
+    await instance.getTime();
+
+    //  redirect to homepage
+    Navigator.pushReplacementNamed(
+        context, '/home',
+        arguments: {
+          'location': instance.location,
+          'flag': instance.countryFlag,
+          'time': instance.time,
+        }
+    );
   }
-
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    setupWorldTime();
   }
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      backgroundColor: Colors.indigoAccent,
+      body: Center(
+        child: SpinKitFadingCircle(
+          color: Colors.white,
+        ),
+      ),
+    );
   }
 }
