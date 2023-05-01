@@ -22,6 +22,7 @@ class _StartScreenState extends State<StartScreen> {
           'location': instance.location,
           'flag': instance.countryFlag,
           'time': instance.time,
+          'isDayTime': instance.isDayTime,
         }
     );
   }
