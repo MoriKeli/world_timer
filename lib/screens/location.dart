@@ -20,6 +20,18 @@ class _LocationState extends State<Location> {
     WorldTime(location: 'New York', countryFlag: 'us.png', timezone: 'America/New_York'),
   ];
 
+  void updateTime(index) async {
+    WorldTime instance = locations[index];
+    await instance.getTime();
+    //  navigate to home screen when a country is selected
+    Navigator.pop(context, {
+      'location': instance.location,
+      'countryFlag': instance.countryFlag,
+      'time': instance.time,
+      'isDayTime': instance.isDayTime,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +47,9 @@ class _LocationState extends State<Location> {
               padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
               child: Card(
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    updateTime(index);
+                  },
                   title: Text(locations[index].location),
                   leading: CircleAvatar(
                     backgroundImage: AssetImage('assets/flag-icons/${locations[index].countryFlag}'),
