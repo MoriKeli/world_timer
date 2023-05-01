@@ -20,7 +20,7 @@ class _StartScreenState extends State<StartScreen> {
         context, '/home',
         arguments: {
           'location': instance.location,
-          'flag': instance.countryFlag,
+          'countryFlag': instance.countryFlag,
           'time': instance.time,
           'isDayTime': instance.isDayTime,
         }
