@@ -1,5 +1,6 @@
 import 'package:http/http.dart';
 import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class WorldTime {
   String location;
@@ -23,11 +24,11 @@ class WorldTime {
       DateTime currentDate = DateTime.parse(datetime);
       currentDate = currentDate.add(Duration(hours: int.parse(offset)));
 
-      time = currentDate.toString();   // set time property
+      time = DateFormat.jm().format(currentDate);   // set time property
 
     }
     catch (e) {
-      print('An error occured! $e');
+      print('An error occurred! $e');
       // update time since it will ne null
       time = 'Could not get time data';
     }
