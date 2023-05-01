@@ -7,6 +7,7 @@ class WorldTime {
   String time = '';
   String countryFlag;
   String timezone;  // for example: Africa/Nairobi, Europe/London
+  bool isDayTime = false;
 
   //constructor
   WorldTime({required this.location, required this.countryFlag, required this.timezone});
@@ -24,6 +25,7 @@ class WorldTime {
       DateTime currentDate = DateTime.parse(datetime);
       currentDate = currentDate.add(Duration(hours: int.parse(offset)));
 
+      isDayTime = currentDate.hour > 6 && currentDate.hour < 19 ? true : false;
       time = DateFormat.jm().format(currentDate);   // set time property
 
     }
